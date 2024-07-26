@@ -27,6 +27,16 @@ class Snake:
         new_segment.goto(position)
         self.segments.append(new_segment)
 
+    def reset(self):
+        # this is so when the snake dies, it gets sent to a faraway place, otherwise the dead snake would remain there
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+
+        # basically doing everything the init does
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
     def extend(self):
         self.add_segment(self.segments[-1].position())
 
